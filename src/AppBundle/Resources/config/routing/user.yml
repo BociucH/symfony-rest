@@ -1,0 +1,9 @@
+user_list:
+  path: /
+  defaults: { _controller: AppBundle:User:list }
+  methods: [GET]
+
+user_read:
+  path: /{id}
+  defaults: { _controller: AppBundle:User:read }
+  methods: [GET]

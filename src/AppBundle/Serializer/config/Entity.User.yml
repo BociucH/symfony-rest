@@ -1,0 +1,11 @@
+AppBundle\Entity\User:
+  properties:
+    id:
+      expose: true
+      groups: [user_id, user_short, user_full]
+    firstName:
+      expose: true
+      groups: [user_short, user_full]
+    lastName:
+      expose: true
+      groups: [user_short, user_full]
