@@ -2,6 +2,8 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\ValueObject\EmailAddress;
+
 class UserData
 {
     /**
@@ -18,4 +20,9 @@ class UserData
      * @var string
      */
     public $lastName;
+
+    /**
+     * @var EmailAddress
+     */
+    public $email;
 }

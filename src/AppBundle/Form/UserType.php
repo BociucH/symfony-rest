@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Form\DataTransformer\EmailAddressTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,7 +23,14 @@ class UserType extends AbstractType
                 'constraints' => [
                     new NotBlank(),
                 ]
+            ])
+            ->add('email', TextType::class, [
+                'constraints' => [
+                    new NotBlank(),
+                ]
             ]);
+
+        $builder->get('email')->addModelTransformer(new EmailAddressTransformer());
     }
 
     public function configureOptions(OptionsResolver $resolver)

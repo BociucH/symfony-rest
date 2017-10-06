@@ -39,7 +39,7 @@ class UserController extends BaseController
         /** @var UserData $data */
         $data = $this->handleRequest($request, UserType::class);
 
-        $addUserCommand = new AddUserCommand($data->firstName, $data->lastName);
+        $addUserCommand = new AddUserCommand($data->firstName, $data->lastName, $data->email);
 
         $this->container->get('tactician.commandbus')->handle($addUserCommand);
         $this->getDoctrine()->getManager()->flush();

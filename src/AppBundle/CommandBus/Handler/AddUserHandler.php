@@ -28,7 +28,7 @@ class AddUserHandler
      */
     public function handle(AddUserCommand $command)
     {
-        $user = new User($command->getFirstName(), $command->getLastName());
+        $user = new User($command->getFirstName(), $command->getLastName(), $command->getEmail());
 
         $this->entityManager->persist($user);
     }

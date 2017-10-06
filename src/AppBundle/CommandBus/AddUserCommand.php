@@ -2,6 +2,8 @@
 
 namespace AppBundle\CommandBus;
 
+use AppBundle\Entity\ValueObject\EmailAddress;
+
 class AddUserCommand
 {
     /**
@@ -15,15 +17,38 @@ class AddUserCommand
     private $lastName;
 
     /**
+     * @var EmailAddress
+     */
+    private $email;
+
+    /**
      * AddUserCommand constructor.
      *
      * @param string $firstName
      * @param string $lastName
+     * @param EmailAddress $emailAddress
      */
-    public function __construct($firstName, $lastName)
+    public function __construct($firstName, $lastName, EmailAddress $emailAddress)
     {
         $this->firstName = $firstName;
         $this->lastName = $lastName;
+        $this->email = $emailAddress;
+    }
+
+    /**
+     * @return EmailAddress
+     */
+    public function getEmail(): EmailAddress
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param EmailAddress $email
+     */
+    public function setEmail(EmailAddress $email)
+    {
+        $this->email = $email;
     }
 
     /**
