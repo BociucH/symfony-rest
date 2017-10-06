@@ -1,37 +1,21 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AppBundle\CommandBus;
 
-use Doctrine\ORM\Mapping as ORM;
-
-/**
- * @ORM\Entity(repositoryClass="\AppBundle\Entity\Repository\UserRepository")
- * @ORM\Table(name="user")
- */
-class User
+class AddUserCommand
 {
     /**
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @ORM\Column(name="first_name", type="string")
      * @var string
      */
     private $firstName;
 
     /**
-     * @ORM\Column(name="last_name", type="string")
      * @var string
      */
     private $lastName;
 
     /**
-     * User constructor.
+     * AddUserCommand constructor.
      *
      * @param string $firstName
      * @param string $lastName
@@ -40,22 +24,6 @@ class User
     {
         $this->firstName = $firstName;
         $this->lastName = $lastName;
-    }
-
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId(int $id)
-    {
-        $this->id = $id;
     }
 
     /**
