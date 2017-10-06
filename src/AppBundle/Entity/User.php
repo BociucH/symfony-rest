@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\ValueObject\EmailAddress;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,15 +33,30 @@ class User
     private $lastName;
 
     /**
+     * @ORM\Embedded(class = "AppBundle\Entity\ValueObject\EmailAddress")
+     * @var EmailAddress
+     */
+    private $email;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="user")
+     * @var Post[]
+     */
+    private $posts;
+
+    /**
      * User constructor.
      *
      * @param string $firstName
      * @param string $lastName
+     * @param EmailAddress $email
      */
-    public function __construct($firstName, $lastName)
+    public function __construct($firstName, $lastName, EmailAddress $email)
     {
         $this->firstName = $firstName;
         $this->lastName = $lastName;
+        $this->email = $email;
+        $this->posts = new ArrayCollection();
     }
 
     /**
