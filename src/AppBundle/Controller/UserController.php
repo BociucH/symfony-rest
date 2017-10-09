@@ -9,6 +9,7 @@ use AppBundle\Form\UserData;
 use AppBundle\Form\UserType;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher;
 
 class UserController extends BaseController
 {
@@ -19,6 +20,8 @@ class UserController extends BaseController
      */
     public function listAction(): array
     {
+        phpinfo();
+
         return $this->getDoctrine()->getRepository(User::class)->findAll();
     }
 

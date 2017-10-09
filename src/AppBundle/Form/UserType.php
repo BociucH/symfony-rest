@@ -27,7 +27,7 @@ class UserType extends AbstractType
             ->add('email', TextType::class, [
                 'constraints' => [
                     new NotBlank(),
-                ]
+                ],
             ]);
 
         $builder->get('email')->addModelTransformer(new EmailAddressTransformer());

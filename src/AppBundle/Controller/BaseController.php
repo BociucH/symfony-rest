@@ -19,7 +19,7 @@ class BaseController extends FOSRestController
         $form->submit($request->request->all());
 
         if (!$form->isValid()) {
-            return $form->getErrors();
+//            return $form->getErrors();
         }
 
         return $form->getData();

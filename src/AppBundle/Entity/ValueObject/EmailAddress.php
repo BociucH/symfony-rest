@@ -16,11 +16,6 @@ class EmailAddress
      */
     private $email = '';
 
-    /**
-     * EmailAddress constructor.
-     *
-     * @param string $email
-     */
     public function __construct(string $email)
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
