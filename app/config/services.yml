@@ -7,9 +7,9 @@ services:
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services
-        autowire: true
+        autowire: false
         # automatically registers your services as commands, event subscribers, etc.
-        autoconfigure: true
+        autoconfigure: false
         # this means you cannot fetch services directly from the container via $container->get()
         # if you need to do this, you can override this setting on individual services
         public: false
@@ -34,10 +34,21 @@ services:
     #     arguments:
     #         $someArgument: 'some_value'
 
+    # Command Bus
     app.user.add_user_handler:
       class: AppBundle\CommandBus\Handler\AddUserHandler
       public: true
       arguments:
         - "@doctrine.orm.entity_manager"
+        - "@event_dispatcher"
       tags:
         - { name: tactician.handler, command: AppBundle\CommandBus\AddUserCommand }
+
+    # Listeners/Subscribers
+    app.user_created_subscriber:
+      class: AppBundle\Event\Subscriber\UserCreatedSubscriber
+      public: true
+      arguments:
+        - "@doctrine.orm.entity_manager"
+      tags:
+        - { name: kernel.event_subscriber }

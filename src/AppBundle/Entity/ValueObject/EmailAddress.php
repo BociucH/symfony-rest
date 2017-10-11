@@ -11,7 +11,7 @@ use Negotiation\Exception\InvalidArgument;
 class EmailAddress
 {
     /**
-     * @ORM\Column(name = "email", type="string", nullable=true)
+     * @ORM\Column(name="email", type="string", nullable=true)
      * @var string
      */
     private $email = '';
@@ -25,8 +25,8 @@ class EmailAddress
         $this->email = $email;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 }

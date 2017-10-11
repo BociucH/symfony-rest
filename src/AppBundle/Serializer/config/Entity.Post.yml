@@ -1,0 +1,6 @@
+AppBundle\Entity\Post:
+  properties:
+    id:
+      groups: [user_full]
+    content:
+      groups: [user_full]

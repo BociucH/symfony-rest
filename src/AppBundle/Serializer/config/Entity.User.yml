@@ -9,3 +9,10 @@ AppBundle\Entity\User:
     lastName:
       expose: true
       groups: [user_short, user_full]
+    email:
+      expose: true
+      inline: true
+      groups: [user_full]
+    posts:
+      expose: true
+      groups: [user_full]

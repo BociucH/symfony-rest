@@ -1,0 +1,4 @@
+AppBundle\Entity\ValueObject\EmailAddress:
+  properties:
+    email:
+      groups: [user_full]

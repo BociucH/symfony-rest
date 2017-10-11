@@ -46,17 +46,42 @@ class User
 
     /**
      * User constructor.
-     *
-     * @param string $firstName
-     * @param string $lastName
+     */
+    public function __construct()
+    {
+        $this->posts = new ArrayCollection();
+    }
+
+    /**
+     * @return EmailAddress
+     */
+    public function getEmail(): EmailAddress
+    {
+        return $this->email;
+    }
+
+    /**
      * @param EmailAddress $email
      */
-    public function __construct($firstName, $lastName, EmailAddress $email)
+    public function setEmail(EmailAddress $email)
     {
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
         $this->email = $email;
-        $this->posts = new ArrayCollection();
+    }
+
+    /**
+     * @return Post[]
+     */
+    public function getPosts(): array
+    {
+        return $this->posts;
+    }
+
+    /**
+     * @param Post[] $posts
+     */
+    public function setPosts(array $posts)
+    {
+        $this->posts = $posts;
     }
 
     /**
