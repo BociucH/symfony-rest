@@ -1,4 +1,5 @@
 AppBundle\Entity\ValueObject\EmailAddress:
   properties:
     email:
+      expose: true
       groups: [user_full]
