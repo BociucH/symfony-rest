@@ -21,13 +21,13 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(name="first_name", type="string")
+     * @ORM\Column(name="first_name", type="string", nullable=true)
      * @var string
      */
     private $firstName;
 
     /**
-     * @ORM\Column(name="last_name", type="string")
+     * @ORM\Column(name="last_name", type="string", nullable=true)
      * @var string
      */
     private $lastName;
@@ -103,7 +103,7 @@ class User
     /**
      * @return string
      */
-    public function getFirstName(): string
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
@@ -111,7 +111,7 @@ class User
     /**
      * @param string $firstName
      */
-    public function setFirstName(string $firstName)
+    public function setFirstName(?string $firstName)
     {
         $this->firstName = $firstName;
     }
@@ -119,7 +119,7 @@ class User
     /**
      * @return string
      */
-    public function getLastName(): string
+    public function getLastName(): ?string
     {
         return $this->lastName;
     }
@@ -127,7 +127,7 @@ class User
     /**
      * @param string $lastName
      */
-    public function setLastName(string $lastName)
+    public function setLastName(?string $lastName)
     {
         $this->lastName = $lastName;
     }

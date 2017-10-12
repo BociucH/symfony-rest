@@ -11,7 +11,7 @@ use Negotiation\Exception\InvalidArgument;
 class EmailAddress
 {
     /**
-     * @ORM\Column(name="email", type="string", nullable=true)
+     * @ORM\Column(name="email", type="string")
      * @var string
      */
     private $email = '';

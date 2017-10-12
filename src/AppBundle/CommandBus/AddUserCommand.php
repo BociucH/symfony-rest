@@ -24,14 +24,10 @@ class AddUserCommand
     /**
      * AddUserCommand constructor.
      *
-     * @param string $firstName
-     * @param string $lastName
      * @param EmailAddress $emailAddress
      */
-    public function __construct($firstName, $lastName, EmailAddress $emailAddress)
+    public function __construct(EmailAddress $emailAddress)
     {
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
         $this->email = $emailAddress;
     }
 
@@ -54,7 +50,7 @@ class AddUserCommand
     /**
      * @return string
      */
-    public function getFirstName(): string
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
@@ -62,7 +58,7 @@ class AddUserCommand
     /**
      * @param string $firstName
      */
-    public function setFirstName(string $firstName)
+    public function setFirstName(?string $firstName)
     {
         $this->firstName = $firstName;
     }
@@ -70,7 +66,7 @@ class AddUserCommand
     /**
      * @return string
      */
-    public function getLastName(): string
+    public function getLastName(): ?string
     {
         return $this->lastName;
     }
@@ -78,7 +74,7 @@ class AddUserCommand
     /**
      * @param string $lastName
      */
-    public function setLastName(string $lastName)
+    public function setLastName(?string $lastName)
     {
         $this->lastName = $lastName;
     }

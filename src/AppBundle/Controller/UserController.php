@@ -8,6 +8,7 @@ use AppBundle\Entity\User;
 use AppBundle\Form\UserData;
 use AppBundle\Form\UserType;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Symfony\Component\Form\FormErrorIterator;
 use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends BaseController
@@ -41,7 +42,13 @@ class UserController extends BaseController
         /** @var UserData $data */
         $data = $this->handleRequest($request, UserType::class);
 
-        $addUserCommand = new AddUserCommand($data->firstName, $data->lastName, $data->email);
+        if ($data instanceof FormErrorIterator) {
+            throw new \Exception($data->__toString());
+        }
+
+        $addUserCommand = new AddUserCommand($data->email);
+        $addUserCommand->setFirstName($data->firstName);
+        $addUserCommand->setLastName($data->lastName);
 
         $this->container->get('tactician.commandbus')->handle($addUserCommand);
         $this->getDoctrine()->getManager()->flush();
