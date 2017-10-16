@@ -52,3 +52,9 @@ services:
         - "@doctrine.orm.entity_manager"
       tags:
         - { name: kernel.event_subscriber }
+
+    # Serializer Subscribers
+    jms_serializer.feedback_context_serializer:
+        class: 'AppBundle\Serializer\EventSubscriber\TestSubscriber'
+        tags:
+          - { name: 'jms_serializer.event_subscriber'}
