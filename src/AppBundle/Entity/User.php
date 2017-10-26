@@ -3,14 +3,18 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\ValueObject\EmailAddress;
+use AppBundle\Entity\ValueObject\PasswordHash;
+use AppBundle\Entity\ValueObject\SaltHash;
+use AppBundle\Entity\ValueObject\UserRole;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="\AppBundle\Entity\Repository\UserRepository")
  * @ORM\Table(name="user")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Column(name="id", type="integer")
@@ -45,11 +49,59 @@ class User
     private $posts;
 
     /**
+     * @ORM\Embedded(class="AppBundle\Entity\ValueObject\UserRole")
+     * @var UserRole
+     */
+    private $role;
+
+    /**
+     * @ORM\Embedded(class="AppBundle\Entity\ValueObject\PasswordHash")
+     * @var PasswordHash
+     */
+    private $passwordHash;
+
+    /**
+     * @ORM\Embedded(class="AppBundle\Entity\ValueObject\SaltHash")
+     * @var SaltHash
+     */
+    private $salt;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Session", mappedBy="user")
+     */
+    private $loggedAs;
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
         $this->posts = new ArrayCollection();
+    }
+
+    public function getRoles()
+    {
+        return [$this->role];
+    }
+
+    public function getPassword()
+    {
+        return $this->passwordHash;
+    }
+
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    public function getUsername()
+    {
+        return '';
+    }
+
+    public function eraseCredentials()
+    {
+        return;
     }
 
     /**
@@ -130,5 +182,53 @@ class User
     public function setLastName(?string $lastName)
     {
         $this->lastName = $lastName;
+    }
+
+    /**
+     * @return UserRole
+     */
+    public function getRole(): UserRole
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param UserRole $role
+     */
+    public function setRole(UserRole $role)
+    {
+        $this->role = $role;
+    }
+
+    /**
+     * @return PasswordHash
+     */
+    public function getPasswordHash(): PasswordHash
+    {
+        return $this->passwordHash;
+    }
+
+    /**
+     * @param PasswordHash $passwordHash
+     */
+    public function setPassword(PasswordHash $passwordHash)
+    {
+        $this->passwordHash = $passwordHash;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLoggedAs()
+    {
+        return $this->loggedAs;
+    }
+
+    /**
+     * @param mixed $loggedAs
+     */
+    public function setLoggedAs($loggedAs)
+    {
+        $this->loggedAs = $loggedAs;
     }
 }
