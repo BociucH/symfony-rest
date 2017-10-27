@@ -1,4 +1,5 @@
 AppBundle\Entity\Post:
+  exclusion_policy: ALL
   properties:
     id:
       groups: [user_full]

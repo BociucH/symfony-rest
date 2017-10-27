@@ -36,11 +36,13 @@ class Session implements UserInterface
     /**
      * Session constructor.
      * @param int $id
+     * @param User $user
      * @param Bearer $accessToken
      */
-    public function __construct($id, Bearer $accessToken)
+    public function __construct($id, User $user, Bearer $accessToken)
     {
         $this->id = $id;
+        $this->user = $user;
         $this->accessToken = $accessToken;
     }
 

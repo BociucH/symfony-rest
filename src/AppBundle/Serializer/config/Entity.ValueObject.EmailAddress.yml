@@ -1,4 +1,5 @@
 AppBundle\Entity\ValueObject\EmailAddress:
+  exclusion_policy: ALL
   properties:
     email:
       expose: true

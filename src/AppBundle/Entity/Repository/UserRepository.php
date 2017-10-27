@@ -3,6 +3,7 @@
 namespace AppBundle\Entity\Repository;
 
 use AppBundle\Entity\User;
+use AppBundle\Entity\ValueObject\EmailAddress;
 use Doctrine\ORM\EntityRepository;
 
 class UserRepository extends EntityRepository
@@ -26,5 +27,13 @@ class UserRepository extends EntityRepository
         $query->orderBy("user.$field", 'ASC');
 
         return $query->getQuery()->getResult();
+    }
+
+    public function findOneByEmail(EmailAddress $email): ?User
+    {
+        /** @var User|null $result */
+        $result = $this->findOneBy(['email.email' => (string) $email]);
+
+        return $result;
     }
 }

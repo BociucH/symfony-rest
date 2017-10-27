@@ -1,0 +1,11 @@
+AppBundle\Entity\Session:
+  exclusion_policy: ALL
+  properties:
+    user:
+      expose: true
+      groups: [session]
+    accessToken:
+      expose: true
+      type: string
+      serialized_name: token
+      groups: [session]

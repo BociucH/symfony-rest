@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 class SaltHash
 {
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(name="saltHash", type="string")
      * @var string
      */
     private $saltHash;

@@ -34,6 +34,13 @@ services:
     #     arguments:
     #         $someArgument: 'some_value'
 
+    # Repositories
+    app.user.user_repository:
+      class: AppBundle\Entity\Repository\UserRepository
+      factory: ["@doctrine.orm.entity_manager", getRepository]
+      arguments:
+        - AppBundle\Entity\User
+
     # Command Bus
     app.user.add_user_handler:
       class: AppBundle\CommandBus\Handler\AddUserHandler
@@ -43,6 +50,16 @@ services:
         - "@event_dispatcher"
       tags:
         - { name: tactician.handler, command: AppBundle\CommandBus\AddUserCommand }
+
+    app.user.login_handler:
+      class: AppBundle\CommandBus\Handler\UserLoginHandler
+      public: true
+      arguments:
+        - "@app.user.user_repository"
+        - "@doctrine.orm.entity_manager"
+        - "@security.password_encoder"
+      tags:
+        - { name: tactician.handler, command: AppBundle\CommandBus\UserLoginCommand }
 
     # Listeners/Subscribers
     app.user_created_subscriber:

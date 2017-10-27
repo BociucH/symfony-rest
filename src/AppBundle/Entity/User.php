@@ -73,15 +73,18 @@ class User implements UserInterface
 
     /**
      * User constructor.
+     *
+     * @param SaltHash $salt
      */
-    public function __construct()
+    public function __construct(SaltHash $salt)
     {
+        $this->salt = $salt;
         $this->posts = new ArrayCollection();
     }
 
     public function getRoles()
     {
-        return [$this->role];
+        return [(string) $this->role];
     }
 
     public function getPassword()

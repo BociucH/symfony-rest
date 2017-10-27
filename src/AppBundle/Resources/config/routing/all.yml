@@ -1,3 +1,6 @@
+session:
+  resource: "@AppBundle/Resources/config/routing/session.yml"
+
 user:
   prefix: /user
   resource: "@AppBundle/Resources/config/routing/user.yml"

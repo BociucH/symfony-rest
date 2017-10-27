@@ -1,18 +1,19 @@
 AppBundle\Entity\User:
+  exclusion_policy: ALL
   properties:
     id:
       expose: true
-      groups: [user_id, user_short, user_full]
+      groups: [user_id, user_short, user_full, session]
     firstName:
       expose: true
-      groups: [user_short, user_full]
+      groups: [user_short, user_full, session]
     lastName:
       expose: true
-      groups: [user_short, user_full]
+      groups: [user_short, user_full, session]
     email:
       expose: true
       inline: true
-      groups: [user_full]
+      groups: [user_full, session]
     posts:
       expose: true
       groups: [user_full]
