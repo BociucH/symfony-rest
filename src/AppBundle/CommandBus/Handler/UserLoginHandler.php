@@ -47,7 +47,7 @@ class UserLoginHandler
             throw new Exception('My Error');
         }
 
-        $session = new Session(1, $user, $command->getBearer());
+        $session = new Session($user, $command->getBearer());
 
         $this->em->persist($session);
     }
